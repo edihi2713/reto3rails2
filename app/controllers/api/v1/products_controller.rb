@@ -25,9 +25,9 @@ class Api::V1::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def destroy
+  def destroy 
     @product = Product.find(params[:id])
-    @produc.destroy
+    @product.destroy
      render json: { message: "Eliminado exitosamente" }, status: 204
   end
 
