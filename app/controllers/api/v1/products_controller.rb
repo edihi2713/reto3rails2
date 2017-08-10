@@ -17,13 +17,18 @@ class Api::V1::ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+  
   def edit
     @product = Product.find(params[:id])
   end
 
   def destroy
-     Product.find(params[:id]).destroy
-     render json: {message: "Eliminado exitosamente"}, status: 204
+    @product = Product.find(params[:id])
+    @produc.destroy
+     render json: { message: "Eliminado exitosamente" }, status: 204
   end
 
 
