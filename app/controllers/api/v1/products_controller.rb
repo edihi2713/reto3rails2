@@ -20,7 +20,7 @@ class Api::V1::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end
-  
+
   def edit
     @product = Product.find(params[:id])
   end
@@ -36,7 +36,8 @@ class Api::V1::ProductsController < ApplicationController
     @product = Product.find(params[:id])
 
     if @product.update_attributes(product_params)
-      render "api/v1/products/show"
+      render json: { name: @product.name, price: @product.price }
+      #render "api/v1/products/show"
     else
       render json:  { errors: @product.errors.full_messages } , status: 422
     end
