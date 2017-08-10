@@ -21,8 +21,20 @@ class Api::V1::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def destroy
+     Product.find(params[:id]).destroy
+     render json: {message: "Eliminado exitosamente"}, status: 204
+  end
+
+
   def update
-    @product = Product.update(params[:id], product_params)
+    @product = Product.find(params[:id])
+
+    if @product.update_attributes(product_params)
+      render "api/v1/products/show"
+    else
+      render json:  { errors: @product.errors.full_messages } , status: 422
+    end
   end
 
   private
